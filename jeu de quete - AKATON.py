@@ -2,10 +2,11 @@
 # avec la touche 'q', ou avec la souris en fermant la fenêtre
 
 #Importation des différents modules 
-import pygame as pg
+import pygame as pg 
 from random import randint, random
 from pygame.constants import K_LEFT, K_RIGHT
 import random
+
 
 
 pg.init()
@@ -19,14 +20,16 @@ score=0 # comptabilisation du score
 taille=3 #choix de la taille du serpent 
 direction = (0, 0) #direction initiale du snake 
 
+win=pygame.display.set_mode((NX, NY)) 
+pygame.display.set_caption("Scrolling Text") 
+Font=pygame.font.SysFont('timesnewroman',  30)
+
 #Génération du serpent 
 snake=[]
 for i in range (taille):
     snake.append((i,15))
 
-#génération du 1er fruit 
-x = random.randrange(0,NX,width)
-y = random.randrange(0,NY,height)
+
 
 
 #génération de la fenêtre du jeux 
@@ -79,7 +82,11 @@ while running:
     screen.fill(color=(0, 0, 0))
     
     
-    
+    #affichage du donjon 
+    for line,floor in enumerate(donjon) :
+        for column, caractere in enumerate(floor) : 
+            win.blit(Font.render(caractere, False,(0,0,0)), (column*width, line*height))
+
 
     
     #affichage du serpent, du score et de la pomme 
