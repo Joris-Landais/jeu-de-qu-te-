@@ -81,11 +81,14 @@ while running:
     #réinitialisation du fond 
     screen.fill(color=(0, 0, 0))
     
-    donjon=[['-','-'],['','U']]
+    donjon=[['-','-'],['','-']]
     #affichage du donjon 
     for line,floor in enumerate(donjon) :
         for column, caractere in enumerate(floor) : 
-            win.blit(Font.render(caractere, False,(255,255,255)), (column*width, line*height))
+            if caractere == '-' or '|':
+                pg.draw.rect(screen,color = (0,255,255), rect = pg.Rect(column*width,line*height, width, height))
+            else:
+                win.blit(Font.render(caractere, False,(255,255,255)), (column*width, line*height))
 
 
     
