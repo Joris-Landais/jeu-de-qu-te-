@@ -25,7 +25,7 @@ pg.display.set_caption("Scrolling Text")
 Font=pg.font.SysFont('timesnewroman',  30)
 
 #Génération du character 
-character=[1,1]
+character=[]
 for i in range (taille):
     character.append((i,1))
 
