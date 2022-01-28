@@ -59,6 +59,7 @@ class Room:
         self.length = length
         self.width = width
         self.content = content
+        self.corner = corner
     
     def top_left_corner(self):
         return self.corner

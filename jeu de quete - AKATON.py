@@ -22,9 +22,13 @@ direction = (0, 0) #direction initiale du character
 win=pg.display.set_mode((NX, NY)) 
 wall=pg.image.load("wall_of_brick.jpg").convert()
 wall=pg.transform.scale(wall,(width, height))
+flour=pg.image.load("sol.jpg").convert()
+flour=pg.transform.scale(flour,(width, height))
 
 pg.display.set_caption("Scrolling Text") 
 Font=pg.font.SysFont('timesnewroman',  30)
+
+
 
 #Génération du character 
 character=[]
@@ -84,20 +88,25 @@ while running:
         
     #réinitialisation du fond 
     screen.fill(color=(0, 0, 0))
-    
+    """
     donjon=[8*'-' + 4*' ' + 7*'-',
     '|' + 6*'.' + '|' + 2*' ' + 2*'#' + '+' + 5*'.' + '|',
     '|' + 6*'.' + '|' + 2*' ' + '# |' + 5*'.' + '|',
     '|' + 6*'.' + '+### |' + 5*'.' + '|',
     8*'-' + 4*' ' + 7*'-']
+    """
+    ARGS = [Room(corner = (0,0), length = 8, width = 8), Room((0,13), 7, 7), Room((8,21), 4, 6),
+Corridor(entry = (3,9), length = 3), Corridor((2,9), 1), Corridor((1,9), 2), 
+Corridor((3,19), 8), Corridor((3,26), 3, 'v'), Corridor((6,23), 4), Corridor((7, 23), 1)]
+    donjon = str(Donjon(ARGS))
     #affichage du donjon 
     for line,floor in enumerate(donjon) :
         for column, caractere in enumerate(floor) :
             if caractere == '-'or caractere =='|' :
-                 pg.draw.rect(screen,color = (255,255,0), rect = pg.Rect(column*width,line*height, width, height))
-                 win.blit(wall, (column*width,line*height)) 
+                win.blit(wall, (column*width,line*height)) 
             if caractere == '.':
-                pg.draw.rect(screen,color = (255,0,0), rect = pg.Rect(column*width,line*height, width, height)) 
+                win.blit(flour, (column*width,line*height)) 
+                #pg.draw.rect(screen,color = (255,0,0), rect = pg.Rect(column*width,line*height, width, height)) 
             if caractere == '+':
                 pg.draw.rect(screen,color = (0,255,0), rect = pg.Rect(column*width,line*height, width, height)) 
             if caractere == "#":
