@@ -6,6 +6,7 @@ import pygame as pg
 from random import randint, random
 from pygame.constants import K_LEFT, K_RIGHT
 import random
+from donjon import *
 
 
 pg.init()
@@ -16,7 +17,7 @@ NY=500 #nb de pixel en y
 width = 25 # largeur du rectangle en pixels
 height = 25 # hauteur du rectangle en pixels
 score=0 # comptabilisation du score 
-taille=3 #choix de la taille du character 
+taille=2 #choix de la taille du character 
 direction = (0, 0) #direction initiale du character 
 
 win=pg.display.set_mode((NX, NY)) 
@@ -26,7 +27,7 @@ Font=pg.font.SysFont('timesnewroman',  30)
 #Génération du character 
 character=[]
 for i in range (taille):
-    character.append((i,15))
+    character.append((i,1))
 
 
 
@@ -80,14 +81,23 @@ while running:
     #réinitialisation du fond 
     screen.fill(color=(0, 0, 0))
     
-    donjon=[['-','-'],['','-']]
+    donjon=[8*'-' + 4*' ' + 7*'-',
+    '|' + 6*'.' + '|' + 2*' ' + 2*'#' + '+' + 5*'.' + '|',
+    '|' + 6*'.' + '|' + 2*' ' + '# |' + 5*'.' + '|',
+    '|' + 6*'.' + '+### |' + 5*'.' + '|',
+    8*'-' + 4*' ' + 7*'-']
     #affichage du donjon 
     for line,floor in enumerate(donjon) :
-        for column, caractere in enumerate(floor) : 
-            if caractere == '-' or '|':
-                pg.draw.rect(screen,color = (0,255,255), rect = pg.Rect(column*width,line*height, width, height))
-            else:
-                win.blit(Font.render(caractere, False,(255,255,255)), (column*width, line*height))
+        for column, caractere in enumerate(floor) :
+            if caractere == '-'or caractere =='|' :
+                 pg.draw.rect(screen,color = (255,255,0), rect = pg.Rect(column*width,line*height, width, height)) 
+            if caractere == '.':
+                pg.draw.rect(screen,color = (255,0,0), rect = pg.Rect(column*width,line*height, width, height)) 
+            if caractere == '+':
+                pg.draw.rect(screen,color = (0,255,0), rect = pg.Rect(column*width,line*height, width, height)) 
+            if caractere == "#":
+                pg.draw.rect(screen,color = (55,55,0), rect = pg.Rect(column*width,line*height, width, height)) 
+            
 
 
     
