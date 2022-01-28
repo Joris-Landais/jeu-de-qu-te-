@@ -8,7 +8,6 @@ from pygame.constants import K_LEFT, K_RIGHT
 import random
 
 
-
 pg.init()
 
 #Initialisation des variables 
