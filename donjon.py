@@ -12,7 +12,8 @@ def donjon():
 # var globales :
 SHAPE = (20,20)
 # tester Donjon avec les arguments :
-ARGS = []
+ARGS = [Room(corner = (0,0), length = 8, width = 8), Room((0,13), 7, 7), Room((8,21), 4, 6),
+Corridor(entry = (3,9), length = 3), Corridor(())]
 
 
 # définition donjon, salles, couloirs :
@@ -21,7 +22,7 @@ class Donjon:
     (je m'occuperai de définir les arguments si vous voulez)
 
     Args :
-        xx
+        
 
 
     Attributes :
@@ -58,7 +59,7 @@ class Room:
         length, width : définit la forme de la salle
         content (list) : list of objects/ characters and their position in the room
     """
-    def __init__(self, corner, length, width, content):
+    def __init__(self, corner, length, width, content=[]):
         self.length = length
         self.width = width
         self.content = content
@@ -67,13 +68,13 @@ class Room:
         return self.corner
     
     def down_right_corner(self):
-        return self.corner[0] + self.length, self.corner[1] + self.width
+        return self.corner[0] + self.length -1 , self.corner[1] + self.width -1
 
     def __str__(self):
         matrix = '.' * np.ones((self.length, self.width), dtype = object)
         matrix[:, 0], matrix[:, -1] = '|', '|'
         matrix[0, :], matrix[-1, :] = '-', '-'
-        # il reste à ajouter la porte et les objets qui sont ds la salle
+        # il reste à ajouter les portes et les objets qui sont ds la salle
         return matrix
 
 
