@@ -22,6 +22,8 @@ direction = (0, 0) #direction initiale du character
 win=pg.display.set_mode((NX, NY)) 
 wall=pg.image.load("wall_of_brick.jpg").convert()
 wall=pg.transform.scale(wall,(width, height))
+flour=pg.image.load("sol.jpg").convert()
+flour=pg.transform.scale(flour,(width, height))
 
 pg.display.set_caption("Scrolling Text") 
 Font=pg.font.SysFont('timesnewroman',  30)
@@ -92,10 +94,10 @@ while running:
     for line,floor in enumerate(donjon) :
         for column, caractere in enumerate(floor) :
             if caractere == '-'or caractere =='|' :
-                 pg.draw.rect(screen,color = (255,255,0), rect = pg.Rect(column*width,line*height, width, height))
-                 win.blit(wall, (column*width,line*height)) 
+                win.blit(wall, (column*width,line*height)) 
             if caractere == '.':
-                pg.draw.rect(screen,color = (255,0,0), rect = pg.Rect(column*width,line*height, width, height)) 
+                win.blit(flour, (column*width,line*height)) 
+                #pg.draw.rect(screen,color = (255,0,0), rect = pg.Rect(column*width,line*height, width, height)) 
             if caractere == '+':
                 pg.draw.rect(screen,color = (0,255,0), rect = pg.Rect(column*width,line*height, width, height)) 
             if caractere == "#":
