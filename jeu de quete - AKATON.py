@@ -19,8 +19,10 @@ height = 25 # hauteur du rectangle en pixels
 score=0 # comptabilisation du score 
 taille=2 #choix de la taille du character 
 direction = (0, 0) #direction initiale du character 
-
 win=pg.display.set_mode((NX, NY)) 
+wall=pg.image.load("wall_of_brick.jpg").convert()
+wall=pg.transform.scale(wall,(width, height))
+
 pg.display.set_caption("Scrolling Text") 
 Font=pg.font.SysFont('timesnewroman',  30)
 
@@ -41,9 +43,8 @@ clock = pg.time.Clock()
 running = True
 
 while running:
-    clock.tick(15)
-    i, j = character[1][1], character[1][0]
-    list_impass = ['|', '-', ' ']
+    clock.tick(20)
+
     # on itère sur tous les évênements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
     for event in pg.event.get():
@@ -58,16 +59,16 @@ while running:
                 running = False
 
             #détection des touches du claviers pour la direction et impossibilité de reculer sur soit même 
-            elif event.key == pg.K_UP and direction!=(0,1) and donjon[i-1][j] not in list_impass:
+            elif event.key == pg.K_UP and direction!=(0,1):
                 direction=(0,-1)
                 
-            elif event.key == pg.K_DOWN and direction!=(0,-1) and donjon[i+1][j] not in list_impass:
+            elif event.key == pg.K_DOWN and direction!=(0,-1):
                 direction=(0,1)
                                
-            elif event.key == pg.K_LEFT and direction!=(1,0) and donjon[i][j-1] not in list_impass:
+            elif event.key == pg.K_LEFT and direction!=(1,0):
                 direction=(-1,0)
                 
-            elif event.key == pg.K_RIGHT and direction!=(-1,0) and donjon[i][j+1] not in list_impass:
+            elif event.key == pg.K_RIGHT and direction!=(-1,0):
                 direction=(1,0)
                 
 
@@ -91,7 +92,8 @@ while running:
     for line,floor in enumerate(donjon) :
         for column, caractere in enumerate(floor) :
             if caractere == '-'or caractere =='|' :
-                 pg.draw.rect(screen,color = (255,255,0), rect = pg.Rect(column*width,line*height, width, height)) 
+                 pg.draw.rect(screen,color = (255,255,0), rect = pg.Rect(column*width,line*height, width, height))
+                 win.blit(wall, (column*width,line*height)) 
             if caractere == '.':
                 pg.draw.rect(screen,color = (255,0,0), rect = pg.Rect(column*width,line*height, width, height)) 
             if caractere == '+':
