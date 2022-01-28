@@ -11,6 +11,8 @@ def donjon():
 
 # var globales :
 SHAPE = (20,20)
+# tester Donjon avec les arguments :
+ARGS = []
 
 
 # définition donjon, salles, couloirs :
@@ -34,8 +36,16 @@ class Donjon:
     def __str__(self):
         matrix = ' ' * np.ones(SHAPE, dtype = object)
         for salle in self.salles :
-            tlc, drc = salle.top_left_corner(), salle.down_right_corner()
-            matrix[tlc[0]: drc[0], tlc[1]: drc[1]] = str(salle)
+            if isinstance(salle, Room):
+                tlc, drc = salle.top_left_corner(), salle.down_right_corner()
+                matrix[tlc[0]: drc[0], tlc[1]: drc[1]] = str(salle)
+            elif isinstance(salle, Corridor):
+                direction = salle.direction
+                e, l = salle.entry, salle.length
+                if direction == 'h':
+                    matrix[e[0], e[0] + l] = str(salle)
+                else :
+                    matrix[:, e[1]: e[1] + l] = str(salle)
         return matrix
 
 
@@ -73,7 +83,7 @@ class Corridor:
     attributs : longueur, point de départ et direction (vertical/ horizontal) 
     
     """
-    def __init__(self, entry, direction, length):
+    def __init__(self, entry, length, direction='h'):
         self.entry = entry
         self.direction = direction
         self.length = length
@@ -92,7 +102,7 @@ class Corridor:
 # personnages et objets :
 
 class Character:
-    """ main character (= perso principal) + PNJs (mechants et marchands)
+    """ main character (= perso principal = nous) + PNJs (mechants et marchands)
     
     Args:
     
