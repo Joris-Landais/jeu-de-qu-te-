@@ -44,6 +44,8 @@ running = True
 
 while running:
     clock.tick(20)
+    i, j = character[1][1], character[1][0]
+    list_impass = ['|', ' ', '-']
 
     # on itère sur tous les évênements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
@@ -59,16 +61,16 @@ while running:
                 running = False
 
             #détection des touches du claviers pour la direction et impossibilité de reculer sur soit même 
-            elif event.key == pg.K_UP and direction!=(0,1):
+            elif event.key == pg.K_UP and direction!=(0,1) and donjon[i-1][j] not in list_impass:
                 direction=(0,-1)
                 
-            elif event.key == pg.K_DOWN and direction!=(0,-1):
+            elif event.key == pg.K_DOWN and direction!=(0,-1) and donjon[i+1][j] not in list_impass:
                 direction=(0,1)
                                
-            elif event.key == pg.K_LEFT and direction!=(1,0):
+            elif event.key == pg.K_LEFT and direction!=(1,0) and  donjon[i][j-1] not in list_impass:
                 direction=(-1,0)
                 
-            elif event.key == pg.K_RIGHT and direction!=(-1,0):
+            elif event.key == pg.K_RIGHT and direction!=(-1,0) and  donjon[i][j+1] not in list_impass:
                 direction=(1,0)
                 
 
