@@ -81,11 +81,11 @@ while running:
     #réinitialisation du fond 
     screen.fill(color=(0, 0, 0))
     
-    
+    donjon=[['-','-'],['','U']]
     #affichage du donjon 
     for line,floor in enumerate(donjon) :
         for column, caractere in enumerate(floor) : 
-            win.blit(Font.render(caractere, False,(0,0,0)), (column*width, line*height))
+            win.blit(Font.render(caractere, False,(255,255,255)), (column*width, line*height))
 
 
     
