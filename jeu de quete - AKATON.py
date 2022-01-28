@@ -17,7 +17,7 @@ width = 25 # largeur du rectangle en pixels
 height = 25 # hauteur du rectangle en pixels
 score=0 # comptabilisation du score 
 taille=3 #choix de la taille du serpent 
-direction = (1, 0) #direction initiale du snake 
+direction = (0, 0) #direction initiale du snake 
 
 #Génération du serpent 
 snake=[]
@@ -38,7 +38,7 @@ clock = pg.time.Clock()
 running = True
 
 while running:
-    clock.tick(8)
+    clock.tick(15)
 
     # on itère sur tous les évênements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
@@ -71,12 +71,13 @@ while running:
     snake.pop(0)
     a=snake[-1][0]+direction[0]
     b=snake[-1][1]+direction[1]
+    direction = (0, 0)
     snake.append((a,b))
 
     
     
     #réinitialisation du fond 
-    screen.fill(color=(133, 109, 77))
+    screen.fill(color=(0, 0, 0))
     
     
     
@@ -84,8 +85,7 @@ while running:
     
     #affichage du serpent, du score et de la pomme 
     for i in snake:
-        pg.draw.rect(screen,color = (0,0,0), rect = pg.Rect(i[0]*width,i[1]*height, width, height))
-        
+        pg.draw.rect(screen,color = (255,255,255), rect = pg.Rect(i[0]*width,i[1]*height, width, height))        
         pg.display.set_caption(f"Score: {score}")        
             
     pg.display.update() 
