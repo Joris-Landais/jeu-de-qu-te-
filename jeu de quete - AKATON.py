@@ -74,8 +74,7 @@ while running:
     direction = (0, 0)
     snake.append((a,b))
 
-    
-    
+        
     #réinitialisation du fond 
     screen.fill(color=(0, 0, 0))
     
