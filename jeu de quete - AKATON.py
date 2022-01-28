@@ -20,9 +20,9 @@ score=0 # comptabilisation du score
 taille=3 #choix de la taille du serpent 
 direction = (0, 0) #direction initiale du snake 
 
-win=pygame.display.set_mode((NX, NY)) 
-pygame.display.set_caption("Scrolling Text") 
-Font=pygame.font.SysFont('timesnewroman',  30)
+win=pg.display.set_mode((NX, NY)) 
+pg.display.set_caption("Scrolling Text") 
+Font=pg.font.SysFont('timesnewroman',  30)
 
 #Génération du serpent 
 snake=[]
