@@ -17,17 +17,17 @@ NY=500 #nb de pixel en y
 width = 25 # largeur du rectangle en pixels
 height = 25 # hauteur du rectangle en pixels
 score=0 # comptabilisation du score 
-taille=3 #choix de la taille du serpent 
-direction = (0, 0) #direction initiale du snake 
+taille=3 #choix de la taille du character 
+direction = (0, 0) #direction initiale du character 
 
 win=pg.display.set_mode((NX, NY)) 
 pg.display.set_caption("Scrolling Text") 
 Font=pg.font.SysFont('timesnewroman',  30)
 
-#Génération du serpent 
-snake=[]
+#Génération du character 
+character=[]
 for i in range (taille):
-    snake.append((i,15))
+    character.append((i,15))
 
 
 
@@ -70,12 +70,12 @@ while running:
                 direction=(1,0)
                 
 
-    # Déplacer le serpent en continue sur la fenêtre 
-    snake.pop(0)
-    a=snake[-1][0]+direction[0]
-    b=snake[-1][1]+direction[1]
+    # Déplacer le character en continue sur la fenêtre 
+    character.pop(0)
+    a=character[-1][0]+direction[0]
+    b=character[-1][1]+direction[1]
     direction = (0, 0)
-    snake.append((a,b))
+    character.append((a,b))
 
         
     #réinitialisation du fond 
@@ -89,8 +89,8 @@ while running:
 
 
     
-    #affichage du serpent, du score et de la pomme 
-    for i in snake:
+    #affichage du character, du score et de la pomme 
+    for i in character:
         pg.draw.rect(screen,color = (255,255,255), rect = pg.Rect(i[0]*width,i[1]*height, width, height))        
         pg.display.set_caption(f"Score: {score}")        
             
