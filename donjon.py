@@ -1,4 +1,3 @@
-from turtle import width
 import numpy as np
 
 
@@ -11,9 +10,6 @@ def donjon():
 
 # var globales :
 SHAPE = (20,20)
-# tester Donjon avec les arguments :
-ARGS = [Room(corner = (0,0), length = 8, width = 8), Room((0,13), 7, 7), Room((8,21), 4, 6),
-Corridor(entry = (3,9), length = 3), Corridor(())]
 
 
 # définition donjon, salles, couloirs :
@@ -97,28 +93,8 @@ class Corridor:
             return m.T
 
 
+# tester Donjon avec les arguments :
+ARGS = [Room(corner = (0,0), length = 8, width = 8), Room((0,13), 7, 7), Room((8,21), 4, 6),
+Corridor(entry = (3,9), length = 3), Corridor((2,9), 1), Corridor((1,9), 2), 
+Corridor((3,19), 8), Corridor((3,26), 3, 'v'), Corridor((6,23), 4), Corridor((7, 23), 1)]
 
-
-
-# personnages et objets :
-
-class Character:
-    """ main character (= perso principal = nous) + PNJs (mechants et marchands)
-    
-    Args:
-    
-    Attributes:
-        role (str): mc / enemy / merchant
-        bag (list): 
-        stats (dict) :
-
-    """
-    def __init__(self, role, bag, stats):
-        pass
-
-class Object:
-    """ objets trouvés ds donjon / achetés / obtenus en battant un ennemi
-    
-    """
-    def __init(self):
-        pass
